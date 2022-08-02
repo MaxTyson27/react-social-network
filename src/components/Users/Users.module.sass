@@ -1,0 +1,88 @@
+.inner
+  display: flex
+  max-width: 100%
+  border: 3px solid teal
+  margin-right: 10px
+  padding: 15px
+  border-radius: 4px
+  margin-bottom: 20px
+
+.wrapper
+  position: relative
+  padding-top: 20px
+
+.preloader
+  position: absolute
+  height: 100%
+  width: 100%
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
+  background-color: rgb(255,255,255)
+  z-index: 1
+  display: flex
+  justify-content: center
+  align-items: center
+
+.image
+  width: 200px
+  height: 115px
+  object-fit: cover
+
+.follow_btn
+  font-size: 14px
+  width: 200px
+  height: 40px
+  border: none
+  background-color: teal
+  cursor: pointer
+  color: #fff
+  font-weight: 600
+  letter-spacing: 0.03em
+  display: block
+  margin: 0 auto
+
+.content
+  width: 100%
+  display: flex
+  justify-content: space-between
+  padding-left: 30px
+
+.name
+  font-size: 25px
+  line-height: 25px
+  font-weight: 700
+  margin-bottom: 20px
+
+.status
+  font-size: 18px
+  line-height: 25px
+
+.location_text
+  font-size: 25px
+  line-height: 25px
+  font-weight: 700
+  text-align: right
+
+.pages
+  display: flex
+  justify-content: center
+  align-items: center
+  column-gap: 15px
+  margin-bottom: 30px
+  span
+    cursor: pointer
+    width: 50px
+    font-size: 20px
+    line-height: 25px
+    height: 50px
+    border: 1px solid teal
+    display: flex
+    align-items: center
+    justify-content: center
+    transition: all .3s
+    &.page--active
+      font-weight: 700
+      color: #fff
+      background-color: teal
