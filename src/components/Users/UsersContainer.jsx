@@ -5,10 +5,11 @@ import classNames from "./Users.module.sass";
 import Users from "./Users";
 import Preloader from "./Preloader/Preloader";
 import { useEffect } from "react";
+import WithAuthRedirect from "../../hoc/WithAuthRedirect";
+import { compose } from "redux";
 
 
 const UsersContainer = (props) => {
-
   useEffect(() => {
     props.getUsers(props.currentPage, props.pageSize)
   }, [])
@@ -26,6 +27,7 @@ const UsersContainer = (props) => {
   )
 }
 
+
 const mapStateToProps = (state) => {
   return {
     users: state.usersPage.users,
@@ -34,8 +36,11 @@ const mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
     followingProgress: state.usersPage.followingProgress,
+    isAuth: state.auth.isAuth
   };
 };
+
+
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
@@ -47,10 +52,14 @@ const mapStateToProps = (state) => {
 //   };
 // };
 
-export default connect(mapStateToProps, {
-  followUser,
-  getUsersPages,
-  getUsers,
-  unfollowUser,
-})(UsersContainer);
+
+export default compose(
+  connect(mapStateToProps, {
+    followUser,
+    getUsersPages,
+    getUsers,
+    unfollowUser,
+  }),
+  WithAuthRedirect
+)(UsersContainer)
 

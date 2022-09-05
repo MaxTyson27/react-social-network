@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Person from "./Person/Person";
 import classNames from "./Profile.module.sass";
 
 const Profile = (props) => {
+
+
   return (
     <div>
       <div className={classNames.bg}>
@@ -11,7 +14,7 @@ const Profile = (props) => {
           alt=""
         />
       </div>
-      <Person profile={props.profile} />
+      <Person status={props.status} updateUserStatus={props.updateUserStatus} profile={props.profile} />
       <MyPostsContainer />
     </div>
   );

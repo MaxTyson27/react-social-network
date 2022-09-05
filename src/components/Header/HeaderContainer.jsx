@@ -1,26 +1,35 @@
 import React from 'react';
 import Header from './Header';
-import { setAuthUserData } from '../../redux/auth-reducer'
+import { setAuthUser, logoutUser } from '../../redux/auth-reducer'
 import { connect } from 'react-redux';
-import * as axios from "axios";
 import { useEffect } from 'react';
-import { usersAPI } from '../../api/api';
 
 
 const HeaderContainer = (props) => {
 
+
+
   useEffect(() => {
-    usersAPI.isAuth().then((data) => {
-      if (data.resultCode === 0) {
-        const { id: userId, login, email } = data.data
-        props.setAuthUserData(userId, email, login)
-      }
-    });
-  })
+
+    props.setAuthUser()
+
+  }, [])
 
 
   return <Header {...props} />
 }
+
+
+// class HeaderContainer extends React.Component {
+//   componentDidMount() {
+//     this.props.setAuthUser()
+//     console.log(this.props.isAuth)
+//   }
+
+//   render() {
+//     return <Header {...this.props} />
+//   }
+// }
 
 
 const mapStateToProps = (state) => {
@@ -30,4 +39,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setAuthUserData })(HeaderContainer);
+export default connect(mapStateToProps, { setAuthUser, logoutUser })(HeaderContainer);

@@ -2,7 +2,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Person = (props) => {
 
-  return <ProfileInfo profile={props.profile} />;
+  return <ProfileInfo status={props.status} updateUserStatus={props.updateUserStatus} profile={props.profile} />;
 
 };
 

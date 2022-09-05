@@ -1,10 +1,13 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { setProfile } from '../../redux/profile-reducer'
+import { setProfile, getUserStatus, updateUserStatus } from '../../redux/profile-reducer'
+import { setAuthUser } from '../../redux/auth-reducer'
 import { useEffect } from 'react';
-import { useMatch } from "react-router";
-import { usersAPI } from '../../api/api';
+import WithAuthRedirect from '../../hoc/WithAuthRedirect';
+import { compose } from 'redux';
+import { withRouter } from '../../hoc/WithRouter';
+import { useNavigate } from 'react-router-dom';
 
 // class ProfileContainer extends React.Component {
 
@@ -38,32 +41,58 @@ import { usersAPI } from '../../api/api';
 
 
 const ProfileContainer = (props) => {
-  const match = useMatch('/profile/:userId');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
+
+    if (!props.isAuth) {
+
+      navigate(`/login`)
+
+    }
     let userId;
-    if (!match) {
-      userId = 2
+    if (!props.match) {
+      // userId = 25119
+      userId = props.userId
     } else {
-      userId = match.params.userId
+      userId = props.match.params.userId
     }
 
-    props.setProfile(userId)
-  }, [match])
+    if (userId) {
+      props.setProfile(userId)
+      props.getUserStatus(userId)
+    }
+
+  }, [props.match, props.userId])
+
+
+
 
 
   return (
-    <Profile {...props} profile={props.profile} />
+    <Profile {...props} />
   );
 };
 
 
+
 const mapStateToProps = (state) => ({
-  profile: state.profilePage.profile
+  profile: state.profilePage.profile,
+  isAuth: state.auth.isAuth,
+  status: state.profilePage.status,
+  userId: state.auth.userId
 })
 
-// const WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {
-  setProfile,
-})(ProfileContainer);
+
+export default compose(
+  connect(mapStateToProps, {
+    setProfile,
+    getUserStatus,
+    updateUserStatus,
+    setAuthUser
+  }),
+  withRouter,
+  // WithAuthRedirect,
+)(ProfileContainer)
