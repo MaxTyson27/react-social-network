@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getUsers, getUsersPages, followUser, unfollowUser } from "../../redux/users-reducer";
+import { usersSelectors, getUsersSelector } from '../../redux/users-selectors'
 import classNames from "./Users.module.sass";
 import Users from "./Users";
 import Preloader from "./Preloader/Preloader";
@@ -30,13 +31,13 @@ const UsersContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingProgress: state.usersPage.followingProgress,
-    isAuth: state.auth.isAuth
+    users: getUsersSelector(state),
+    pageSize: usersSelectors.getPageSize(state),
+    totalUsersCount: usersSelectors.getTotalUsersCount(state),
+    currentPage: usersSelectors.getCurrentPage(state),
+    isFetching: usersSelectors.getIsFetchingStatus(state),
+    followingProgress: usersSelectors.getFollowingProgress(state),
+    isAuth: usersSelectors.getIsAuthStatus(state)
   };
 };
 

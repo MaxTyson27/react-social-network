@@ -2,7 +2,7 @@ import React from "react";
 import Preloader from "../../../Users/Preloader/Preloader";
 import classNames from "./ProfileInfo.module.sass";
 import tobiramaImage from '../../../../assets/images/user.jpeg'
-import ProfileStatus from './ProfileStatus/ProfileStatus'
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
 
 const ProfileInfo = (props) => {
 
@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
       <img src={props.profile.photos.large === null ? tobiramaImage : props.profile.photos.large} alt="avatar" />
       <div className={classNames.person__desc}>
         <p className={classNames.person__name}>{props.profile.fullName}</p>
-        <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
+        <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
         <p className={classNames.about}>{props.profile.aboutMe}</p>
         <ul className={classNames.person__list}>
           <li>Contacts:</li>

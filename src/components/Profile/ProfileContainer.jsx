@@ -53,7 +53,7 @@ const ProfileContainer = (props) => {
     }
     let userId;
     if (!props.match) {
-      // userId = 25119
+
       userId = props.userId
     } else {
       userId = props.match.params.userId
@@ -62,6 +62,8 @@ const ProfileContainer = (props) => {
     if (userId) {
       props.setProfile(userId)
       props.getUserStatus(userId)
+    } else {
+      navigate(`/login`)
     }
 
   }, [props.match, props.userId])

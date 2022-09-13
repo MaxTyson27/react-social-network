@@ -23,7 +23,6 @@ const LoginForm = (props) => {
     console.log(JSON.stringify(data));
     props.loginUser(data.email, data.password, data.rememberMe)
     reset()
-
   }
 
 
@@ -72,6 +71,9 @@ const LoginForm = (props) => {
         />
         remember me
       </label>
+      <div className={classnames.error_message}>
+        {props.isLogin && props.errorMessage}
+      </div>
       <div>
         <button
           className={classnames.button}
@@ -104,7 +106,7 @@ const Login = (props) => {
   return (
     <div className={classnames.inner}>
       <h2 className={classnames.title}>Login</h2>
-      <LoginForm loginUser={props.loginUser} />
+      <LoginForm {...props} />
     </div>
   )
 }
