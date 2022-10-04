@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { initializeApp } from "./redux/app-reducer";
+import { initializeApp } from "./redux/app-reducer.ts";
 import { connect } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/redux-store";

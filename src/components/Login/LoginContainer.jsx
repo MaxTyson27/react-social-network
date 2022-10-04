@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Login from './Login'
-import { loginUser } from '../../redux/auth-reducer'
+import { loginUser } from '../../redux/auth-reducer.ts'
 
 
 const LoginContainer = (props) => {

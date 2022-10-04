@@ -29,8 +29,6 @@ const LoginForm = ({ isLogin, errorMessage, loginUser, captchaUrl }) => {
     reset()
   }
 
-  console.log(captchaUrl)
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={classnames.input_box}>

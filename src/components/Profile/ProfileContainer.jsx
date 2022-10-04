@@ -1,10 +1,9 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { setProfile, getUserStatus, updateUserStatus, savePhoto, updateProfile } from '../../redux/profile-reducer'
-import { setAuthUser } from '../../redux/auth-reducer'
+import { setProfile, getUserStatus, updateUserStatus, savePhoto, updateProfile } from '../../redux/profile-reducer.ts'
+import { setAuthUser } from '../../redux/auth-reducer.ts'
 import { useEffect } from 'react';
-import WithAuthRedirect from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
 import { withRouter } from '../../hoc/WithRouter';
 import { useNavigate } from 'react-router-dom';

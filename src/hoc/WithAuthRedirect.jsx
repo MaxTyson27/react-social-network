@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { setAuthUser } from '../redux/auth-reducer'
+import { setAuthUser } from '../redux/auth-reducer.ts'
 
 const mapStateToPropsForRedirect = (state) => ({
   isAuth: state.auth.isAuth
