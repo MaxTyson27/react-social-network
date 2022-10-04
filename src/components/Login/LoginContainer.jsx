@@ -22,6 +22,7 @@ const mapPropsToState = (state) => ({
   isAuth: state.auth.isAuth,
   isLogin: state.auth.validateLogin,
   errorMessage: state.auth.errorMessage,
+  captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapPropsToState, {

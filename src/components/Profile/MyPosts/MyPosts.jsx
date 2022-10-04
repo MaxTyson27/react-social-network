@@ -45,25 +45,26 @@ const MyPostsForm = (props) => {
   )
 }
 
-const MyPosts = (props) => {
-
-  const postsElements = props.posts.map((p) => (
-    <Post key={p.id} message={p.message} icon={p.avatar} numLikes={p.likes} />
-  ));
+class MyPosts extends React.Component {
 
 
-  // const onPostChange = (e) => {
-  //   setValue(e.target.value);
-  //   props.updateNewPostText(e.target.value);
-  // };
+  render() {
 
-  return (
-    <div className={classNames.post}>
-      <h3 className={classNames.post__title}>My posts</h3>
-      <MyPostsForm addPost={props.addPost} />
-      <div className={classNames.inner}>{postsElements}</div>
-    </div>
-  );
+    console.log('message')
+    const postsElements = this.props.posts.map((p) => (
+      <Post key={p.id} message={p.message} icon={p.avatar} numLikes={p.likes} />
+    ));
+
+    return (
+      <div className={classNames.post} >
+        <h3 className={classNames.post__title}>My posts</h3>
+        <MyPostsForm addPost={this.props.addPost} />
+        <div className={classNames.inner}>{postsElements}</div>
+      </div>
+    );
+  }
+
+
 };
 
 export default MyPosts;

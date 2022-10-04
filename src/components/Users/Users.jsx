@@ -1,30 +1,11 @@
 import React from "react";
+import Pagination from "./Pagination/Pagination";
 import User from "./User/User";
 import classNames from "./Users.module.sass";
 
 
 const Users = (props) => {
 
-  const PaginationElements = () => {
-    const pagesCount = Math.ceil(
-      ((props.totalUsersCount / props.pageSize) / 100) - 35
-    );
-
-    const pages = [];
-
-    for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i);
-    }
-
-    return pages.map((page, index) => {
-      return (
-        <span onClick={() => props.onPageChanged(page)} key={index}
-          className={props.currentPage === page ? classNames["page--active"] : ""}>
-          {page}
-        </span>
-      );
-    })
-  }
 
   const UsersElements = () =>
     props.users.map((user, i) => (
@@ -43,7 +24,7 @@ const Users = (props) => {
   return (
     <div>
       <div className={classNames.pages}>
-        {<PaginationElements />}
+        <Pagination currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} />
       </div>
       {<UsersElements />}
     </div>

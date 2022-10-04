@@ -48,6 +48,20 @@ export const profileAPI = {
       return responce.data;
     });
   },
+  setPhoto(photo) {
+    const formData = new FormData();
+    formData.append("image", photo);
+    return instance.put(`profile/photo`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
+  saveUserProfile(profile) {
+    return instance.put(`profile`, profile).then((responce) => {
+      return responce.data;
+    });
+  },
 };
 
 export const authAPI = {
@@ -56,15 +70,23 @@ export const authAPI = {
       return responce.data;
     });
   },
-  login(email, password, rememberMe = false) {
+  login(email, password, rememberMe = false, captcha = null) {
     return instance
-      .post("auth/login", { email, password, rememberMe })
+      .post("auth/login", { email, password, rememberMe, captcha })
       .then((responce) => {
         return responce.data;
       });
   },
   logout() {
     return instance.delete("auth/login").then((responce) => {
+      return responce.data;
+    });
+  },
+};
+
+export const securityAPI = {
+  getCaptcha() {
+    return instance.get(`security/get-captcha-url`).then((responce) => {
       return responce.data;
     });
   },

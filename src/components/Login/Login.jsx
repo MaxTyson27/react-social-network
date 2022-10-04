@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
-const LoginForm = (props) => {
+const LoginForm = ({ isLogin, errorMessage, loginUser, captchaUrl }) => {
 
   const {
     register,
@@ -21,10 +21,15 @@ const LoginForm = (props) => {
 
   const onSubmit = (data) => {
     console.log(JSON.stringify(data));
-    props.loginUser(data.email, data.password, data.rememberMe)
+    if ('captcha' in data) {
+      loginUser(data.email, data.password, data.rememberMe, data.captcha)
+    } else {
+      loginUser(data.email, data.password, data.rememberMe)
+    }
     reset()
   }
 
+  console.log(captchaUrl)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,8 +77,9 @@ const LoginForm = (props) => {
         remember me
       </label>
       <div className={classnames.error_message}>
-        {props.isLogin && props.errorMessage}
+        {isLogin && errorMessage}
       </div>
+      {captchaUrl && <Captcha captchaUrl={captchaUrl} register={register} />}
       <div>
         <button
           className={classnames.button}
@@ -87,6 +93,20 @@ const LoginForm = (props) => {
   )
 }
 
+
+const Captcha = ({ captchaUrl, register }) => {
+  return (
+    <div>
+      <img src={captchaUrl} alt="" />
+      <input
+        type="text"
+        {...register('captcha', {
+          required: true,
+        })}
+      />
+    </div>
+  )
+}
 
 const Login = (props) => {
 

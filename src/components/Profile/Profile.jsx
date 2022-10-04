@@ -5,6 +5,11 @@ import classNames from "./Profile.module.sass";
 
 const Profile = (props) => {
 
+  const onAddPhoto = (e) => {
+    if (e.target.files.length) {
+      props.savePhoto(e.target.files[0])
+    }
+  }
 
   return (
     <div>
@@ -14,7 +19,8 @@ const Profile = (props) => {
           alt=""
         />
       </div>
-      <Person status={props.status} updateUserStatus={props.updateUserStatus} profile={props.profile} />
+      <Person editMideProfile={props.editMideProfile} userId={props.userId} updateProfile={props.updateProfile} status={props.status} isOwner={props.isOwner} updateUserStatus={props.updateUserStatus} profile={props.profile} />
+      {props.isOwner && <input type='file' onChange={onAddPhoto} />}
       <MyPostsContainer />
     </div>
   );
